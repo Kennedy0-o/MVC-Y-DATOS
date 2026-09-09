@@ -49,9 +49,9 @@
 </div>
 
 <div class="mt-4 d-flex gap-2">
-    <a href="/pedidos" class="btn btn-outline-secondary"><- Volver al listado</a>
+    <a href="<?= base_url('pedidos') ?>" class="btn btn-outline-secondary">&larr; Volver al listado</a>
     <?php if (!in_array($pedido['estado'], ['entregado', 'cancelado'])): ?>
-        <a href="/pedidos/editar/<?= $pedido['id_pedido'] ?>" class="btn btn-warning">Editar Pedido</a>
+        <a href="<?= base_url('pedidos/editar/' . $pedido['id_pedido']) ?>" class="btn btn-warning">Editar Pedido</a>
     <?php endif; ?>
 </div>
 

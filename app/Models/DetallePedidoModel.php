@@ -10,6 +10,8 @@ class DetallePedidoModel extends Model
     protected $allowedFields = ['id_pedido','id_producto','cantidad','precio_unitario','subtotal'];
     protected $useTimestamps = true;
     protected $createdField = 'created_at';
+    protected $updatedField = '';   // 👈 agrega esta línea
+
     public function getDetallePorPedido($idPedido)
     {
         return $this->select('detalle_pedido.*, producto.nombre as producto_nombre')

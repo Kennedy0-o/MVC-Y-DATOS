@@ -34,10 +34,10 @@
                     </td>
                     <td class="fw-bold">S/ <?= number_format($p['total'], 2) ?></td>
                     <td>
-                        <a href="/sagras_guia4_entregable/public/index.php/pedidos/ver/<?= $p['id_pedido'] ?>" class="btn btn-sm btn-outline-primary">Ver</a>
+                        <a href="<?= base_url('pedidos/ver/' . $p['id_pedido']) ?>" class="btn btn-sm btn-outline-primary">Ver</a>
                         <?php if (!in_array($p['estado'], ['entregado', 'cancelado'])): ?>
-                            <a href="/sagras_guia4_entregable/public/index.php/pedidos/editar/<?= $p['id_pedido'] ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                            <a href="/sagras_guia4_entregable/public/index.php/pedidos/cancelar/<?= $p['id_pedido'] ?>" 
+                            <a href="<?= base_url('pedidos/editar/' . $p['id_pedido']) ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                            <a href="<?= base_url('pedidos/cancelar/' . $p['id_pedido']) ?>" 
                                 class="btn btn-sm btn-outline-danger"
                                 onclick="return confirm('¿Está seguro de cancelar este pedido?');">Cancelar</a>
                     <?php endif; ?>

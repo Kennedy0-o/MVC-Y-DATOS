@@ -10,4 +10,5 @@ class MesaModel extends Model
     protected $allowedFields = ['numero','capacidad','estado','nivel'];
     protected $useTimestamps = true;
     protected $createdField = 'created_at';
+    protected $updatedField = '';   // 👈 agrega esta línea también
 }
