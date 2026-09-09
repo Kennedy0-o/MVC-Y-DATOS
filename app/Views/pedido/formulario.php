@@ -9,7 +9,7 @@
     </div>
 <?php endif; ?>
 
-<form action="/pedidos/<?= $accion ?>" method="post" id="formPedido">
+<form action="/sagras_guia4_entregable/public/index.php/pedidos/registrar" method="post">
     <?= csrf_field() ?>
 
     <div class="row g-3">

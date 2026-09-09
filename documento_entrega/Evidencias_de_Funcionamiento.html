@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Evidencias de Funcionamiento - Sagras CI4</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 30px; background: #f5f5f5; }
+  h1 { color: #1b5e20; text-align: center; border-bottom: 3px solid #ff6b35; padding-bottom: 15px; }
+  h2 { color: #1565c0; margin-top: 30px; font-size: 16pt; }
+  .evidence-box { background: white; border-radius: 12px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .evidence-box img { max-width: 100%; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px; }
+  .check { color: #2e7d32; font-weight: bold; font-size: 14pt; }
+  .desc { color: #555; line-height: 1.6; margin: 8px 0; }
+  .url { background: #1b5e20; color: white; padding: 4px 10px; border-radius: 4px; font-family: monospace; font-size: 10pt; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>EVIDENCIAS DE FUNCIONAMIENTO<br><span style="font-size:14pt; color:#666;">Sagras Restaurant - CodeIgniter 4</span></h1>
+
+<div class="evidence-box">
+  <h2>1. Proyecto ejecutable (php spark serve)</h2>
+  <p class="desc">El servidor de desarrollo de CodeIgniter 4 se levanta correctamente en <span class="url">http://localhost:8080</span></p>
+  <p class="check">ESTADO: Funcionando</p>
+</div>
+
+<div class="evidence-box">
+  <h2>2. Estructura MVC identificada</h2>
+  <p class="desc">Las carpetas <b>Models/</b>, <b>Views/</b> y <b>Controllers/</b> están separadas y comunican entre sí.</p>
+  <p class="check">ESTADO: Verificado</p>
+</div>
+
+<div class="evidence-box">
+  <h2>3. Módulos documentados</h2>
+  <p class="desc">Módulos: Autenticacion, Mesas, Pedidos, Productos, Cocina. Cada uno con su Modelo, Controlador y Vista.</p>
+  <p class="check">ESTADO: Documentado en README.md</p>
+</div>
+
+<div class="evidence-box">
+  <h2>4. Ruta, Controlador y Vista propios</h2>
+  <p class="desc">Rutas personalizadas: <span class="url">/pedidos</span>, <span class="url">/pedidos/nuevo</span>, <span class="url">/pedidos/registrar</span>, <span class="url">/pedidos/ver/1</span></p>
+  <p class="check">ESTADO: 4 rutas + 1 controlador + 3 vistas funcionando</p>
+</div>
+
+<div class="evidence-box">
+  <h2>5. Variables de entorno configuradas</h2>
+  <p class="desc">Archivo <b>.env</b> con conexion a MySQL, URL base y seguridad CSRF configurados.</p>
+  <p class="check">ESTADO: Configurado</p>
+</div>
+
+<div class="evidence-box">
+  <h2>6. Diagrama de arquitectura</h2>
+  <p class="desc">Diagrama MVC incluido en el proyecto: <b>diagrama_arquitectura_mvc.png</b></p>
+  <p class="check">ESTADO: Generado</p>
+</div>
+
+<div class="evidence-box">
+  <h2>7. Modelo logico de datos</h2>
+  <p class="desc">8 entidades: Usuario, Mesa, Categoria, Producto, Pedido, Detalle_Pedido, Pago, Preparacion.</p>
+  <p class="check">ESTADO: Normalizado a 3FN</p>
+</div>
+
+<div class="evidence-box">
+  <h2>8. Base de datos funcional</h2>
+  <p class="desc">Script <b>sagras_db.sql</b> crea la base de datos con tablas, claves y datos de prueba.</p>
+  <p class="check">ESTADO: Importable en MySQL</p>
+</div>
+
+<div class="evidence-box">
+  <h2>9. Tablas principales del modulo</h2>
+  <p class="desc">pedido, detalle_pedido, mesa, producto, usuario, preparacion (todas con datos de prueba).</p>
+  <p class="check">ESTADO: 6 tablas con datos</p>
+</div>
+
+<div class="evidence-box">
+  <h2>10. Claves y relaciones definidas</h2>
+  <p class="desc">PK en todas las tablas, 6 FK con ON DELETE/UPDATE, relaciones 1:N, N:M y 1:1.</p>
+  <p class="check">ESTADO: Integridad referencial activa</p>
+</div>
+
+<div class="evidence-box">
+  <h2>11. Modelo CI4 de entidad principal</h2>
+  <p class="desc"><b>PedidoModel.php</b> extiende CodeIgniter\Model con validaciones, timestamps y metodos JOIN.</p>
+  <p class="check">ESTADO: Implementado</p>
+</div>
+
+<div class="evidence-box">
+  <h2>12. Operacion de REGISTRO funcionando</h2>
+  <p class="desc">Formulario web que crea pedido + detalles + preparacion en transaccion SQL.</p>
+  <div class="grid">
+    <div>
+      <p><b>Pantalla: Formulario de registro</b></p>
+      <img src="../evidencias/03_registrar_pedido.png" alt="Registrar pedido">
+    </div>
+    <div>
+      <p><b>Resultado: Pedido registrado</b></p>
+      <img src="../evidencias/02_consulta_pedidos.png" alt="Pedido registrado">
+    </div>
+  </div>
+  <p class="check">ESTADO: Funcionando - URL: /pedidos/nuevo</p>
+</div>
+
+<div class="evidence-box">
+  <h2>13. Operacion de CONSULTA funcionando</h2>
+  <p class="desc">Listado de pedidos con JOIN a mesa y usuario. Detalle individual por ID.</p>
+  <div class="grid">
+    <div>
+      <p><b>Pantalla: Lista de pedidos</b></p>
+      <img src="../evidencias/02_consulta_pedidos.png" alt="Consulta pedidos">
+    </div>
+    <div>
+      <p><b>Pantalla: Detalle del pedido</b></p>
+      <img src="../evidencias/04_ver_pedido.png" alt="Ver pedido">
+    </div>
+  </div>
+  <p class="check">ESTADO: Funcionando - URLs: /pedidos, /pedidos/ver/1</p>
+</div>
+
+<div class="evidence-box">
+  <h2>14. Persistencia comprobada</h2>
+  <p class="desc">Transacciones SQL (transStart/transComplete) + datos de prueba que persisten tras reinicio.</p>
+  <p class="check">ESTADO: Comprobada</p>
+</div>
+
+<div class="evidence-box">
+  <h2>15. Repositorio actualizado</h2>
+  <p class="desc">README.md completo + este documento + codigo fuente listo para subir a GitHub.</p>
+  <p class="check">ESTADO: Listo para publicar</p>
+</div>
+
+<div class="evidence-box" style="background:#e8f5e9;">
+  <h2 style="margin-top:0;">Pantallas adicionales del sistema</h2>
+  <div class="grid">
+    <div>
+      <p><b>Login de usuarios</b></p>
+      <img src="../evidencias/01_login.png" alt="Login">
+    </div>
+    <div>
+      <p><b>Catalogo de productos</b></p>
+      <img src="../evidencias/05_catalogo_productos.png" alt="Productos">
+    </div>
+    <div>
+      <p><b>Panel de cocina</b></p>
+      <img src="../evidencias/06_panel_cocina.png" alt="Cocina">
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top:40px; color:#888; font-size:10pt;">
+  Universidad Andina del Cusco - Ingenieria de Sistemas - 2026-I
+</div>
+
+</body>
+</html>

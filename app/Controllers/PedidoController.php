@@ -157,21 +157,21 @@ class PedidoController extends BaseController
     // DELETE - Cancelar pedido (eliminación lógica)
     // ============================================================
     public function cancelar($id = null)
-    {
+{
         try {
             $this->pedidoService->cancelar((int)$id);
-            return redirect()->to('/pedidos')
-                             ->with('success', 'Pedido cancelado correctamente. La mesa ha sido liberada.');
+            return redirect()->to(base_url('pedidos'))
+                            ->with('success', 'Pedido cancelado correctamente. La mesa ha sido liberada.');
         } catch (\InvalidArgumentException $e) {
-            return redirect()->to('/pedidos')
-                             ->with('error', $e->getMessage());
+            return redirect()->to(base_url('pedidos'))
+                            ->with('error', $e->getMessage());
         } catch (\RuntimeException $e) {
-            return redirect()->to('/pedidos')
-                             ->with('error', $e->getMessage());
+            return redirect()->to(base_url('pedidos'))
+                            ->with('error', $e->getMessage());
         } catch (\Exception $e) {
             log_message('error', '[PedidoController::cancelar] ' . $e->getMessage());
-            return redirect()->to('/pedidos')
-                             ->with('error', 'Ocurrió un error al cancelar el pedido.');
+            return redirect()->to(base_url('pedidos'))
+                            ->with('error', 'Ocurrió un error al cancelar el pedido.');
         }
     }
 }

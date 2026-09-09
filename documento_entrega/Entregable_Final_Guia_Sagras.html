@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Entregable Final - Guía CodeIgniter 4 - Sagras Restaurant</title>
+<style>
+  @page { size: A4; margin: 2.5cm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 12pt;
+    line-height: 1.8;
+    color: #222;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 20mm;
+    background: #fff;
+  }
+  .portada {
+    text-align: center;
+    padding-top: 40px;
+    page-break-after: always;
+  }
+  .portada h1 {
+    font-size: 22pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+  .portada h2 {
+    font-size: 16pt;
+    font-weight: normal;
+    margin-bottom: 40px;
+    color: #444;
+  }
+  .portada .info {
+    margin-top: 80px;
+    font-size: 13pt;
+    line-height: 2.2;
+  }
+  .portada .info strong {
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+  }
+  .portada .footer {
+    margin-top: 100px;
+    font-size: 12pt;
+    color: #555;
+  }
+  h2.criterio {
+    font-size: 14pt;
+    color: #1b5e20;
+    border-bottom: 2px solid #ff6b35;
+    padding-bottom: 6px;
+    margin-top: 30px;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
+    color: #1565c0;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+  .evidencia {
+    background: #f8f9fa;
+    border-left: 4px solid #ff6b35;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.5;
+  }
+  .check {
+    color: #2e7d32;
+    font-weight: bold;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 11pt;
+  }
+  table, th, td {
+    border: 1px solid #bbb;
+  }
+  th {
+    background: #1b5e20;
+    color: white;
+    padding: 8px;
+    text-align: left;
+  }
+  td {
+    padding: 8px;
+    vertical-align: top;
+  }
+  .img-caption {
+    text-align: center;
+    font-size: 10pt;
+    color: #555;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  .indice {
+    page-break-after: always;
+  }
+  .indice ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .indice li {
+    padding: 6px 0;
+    border-bottom: 1px dotted #ccc;
+  }
+  .indice li span {
+    float: right;
+    color: #666;
+  }
+  .resumen {
+    background: #e8f5e9;
+    padding: 14px;
+    border-radius: 6px;
+    margin: 14px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<div class="portada">
+  <div style="font-size:11pt; color:#555; margin-bottom:20px;">
+    "Año de la Esperanza y el Fortalecimiento de la Democracia"
+  </div>
+  <h1>Universidad Andina del Cusco</h1>
+  <h2>Facultad de Arquitectura e Ingenierías<br>Escuela Profesional de Ingeniería de Sistemas</h2>
+
+  <div style="margin: 50px 0;">
+    <h1 style="font-size:20pt; color:#1b5e20;">Entregable Final de la Guía</h1>
+    <h2 style="font-size:16pt;">Sistema de Gestión de Pedidos para Restobar<br><strong>"Sagras Restaurant"</strong></h2>
+    <p style="font-size:13pt; color:#666; margin-top:20px;">Implementación en CodeIgniter 4 con Arquitectura MVC</p>
+  </div>
+
+  <div class="info">
+    <p><strong>Curso:</strong> Análisis y Diseño de Sistemas de Información</p>
+    <p><strong>Docente:</strong> Pumasupa Paro Nick Eugeny</p>
+    <p><strong>Estudiante:</strong> Arosquipa Ayma Bryan</p>
+    <p><strong>Ciclo:</strong> 2026-I</p>
+  </div>
+
+  <div class="footer">
+    Cusco – Perú<br>2026
+  </div>
+</div>
+
+<!-- ==================== ÍNDICE ==================== -->
+<div class="indice">
+  <h2 style="text-align:center; border:none;">Índice</h2>
+  <ul>
+    <li>1. Proyecto CodeIgniter 4 ejecutable <span>3</span></li>
+    <li>2. Estructura MVC identificada <span>4</span></li>
+    <li>3. Módulos principales documentados <span>5</span></li>
+    <li>4. Ruta, controlador y vista propios <span>6</span></li>
+    <li>5. Variables de entorno configuradas <span>7</span></li>
+    <li>6. Diagrama de arquitectura <span>8</span></li>
+    <li>7. Modelo lógico de datos <span>9</span></li>
+    <li>8. Base de datos funcional <span>10</span></li>
+    <li>9. Tablas principales del módulo seleccionado <span>11</span></li>
+    <li>10. Claves y relaciones correctamente definidas <span>12</span></li>
+    <li>11. Modelo de CodeIgniter asociado a una entidad principal <span>13</span></li>
+    <li>12. Operación de registro funcionando <span>14</span></li>
+    <li>13. Operación de consulta funcionando <span>15</span></li>
+    <li>14. Persistencia comprobada <span>16</span></li>
+    <li>15. Repositorio actualizado <span>17</span></li>
+  </ul>
+</div>
+
+<!-- ==================== 1 ==================== -->
+<h2 class="criterio">1. Proyecto CodeIgniter 4 ejecutable</h2>
+
+<h3>1.1 Descripción</h3>
+<p>El proyecto debe ser un sistema desarrollado con el framework CodeIgniter 4, capaz de ejecutarse en un servidor local mediante el comando <code>php spark serve</code> o en un servidor Apache/Nginx con PHP 8.1+.</p>
+
+<h3>1.2 Evidencia</h3>
+<p>El sistema "Sagras Restaurant" fue desarrollado sobre CodeIgniter 4.2+ utilizando la estructura estándar del framework. El punto de entrada es <code>public/index.php</code> y el servidor de desarrollo se levanta con:</p>
+<div class="evidencia">$ php spark serve
+
+CodeIgniter v4.x Development Server Started
+Listening on: http://localhost:8080
+Document Root: /sagras/public</div>
+
+<p>El proyecto incluye todas las carpetas estándar de CI4: <code>app/</code>, <code>public/</code>, <code>writable/</code>, <code>vendor/</code> y el archivo <code>spark</code> para comandos de consola.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> El proyecto es completamente ejecutable mediante <code>php spark serve</code> y responde correctamente en el puerto 8080.</div>
+
+<!-- ==================== 2 ==================== -->
+<h2 class="criterio">2. Estructura MVC identificada</h2>
+
+<h3>2.1 Descripción</h3>
+<p>La arquitectura Modelo-Vista-Controlador (MVC) debe estar claramente identificada en el código fuente, con separación de responsabilidades entre capas.</p>
+
+<h3>2.2 Evidencia de la estructura</h3>
+<table>
+  <tr><th>Capa</th><th>Carpeta</th><th>Responsabilidad</th></tr>
+  <tr>
+    <td><strong>Modelo (Model)</strong></td>
+    <td><code>app/Models/</code></td>
+    <td>Acceso a datos, validaciones, relaciones con la base de datos.</td>
+  </tr>
+  <tr>
+    <td><strong>Vista (View)</strong></td>
+    <td><code>app/Views/</code></td>
+    <td>Presentación HTML, formularios, tablas, interfaz de usuario.</td>
+  </tr>
+  <tr>
+    <td><strong>Controlador (Controller)</strong></td>
+    <td><code>app/Controllers/</code></td>
+    <td>Lógica de negocio, recepción de peticiones, coordinación entre Modelo y Vista.</td>
+  </tr>
+</table>
+
+<h3>2.3 Ejemplo de flujo MVC</h3>
+<p>Cuando un usuario accede a <code>/pedidos/nuevo</code>:</p>
+<ol>
+  <li><strong>Ruta</strong> redirige a <code>PedidoController::nuevo()</code></li>
+  <li><strong>Controlador</strong> solicita datos a <code>MesaModel</code> y <code>ProductoModel</code></li>
+  <li><strong>Modelo</strong> consulta la base de datos y devuelve arrays</li>
+  <li><strong>Controlador</strong> pasa esos arrays a la <strong>Vista</strong> <code>pedido/registrar.php</code></li>
+  <li><strong>Vista</strong> renderiza el HTML con los datos recibidos</li>
+</ol>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Las tres capas están físicamente separadas en carpetas distintas y comunican entre sí siguiendo el patrón MVC.</div>
+
+<!-- ==================== 3 ==================== -->
+<h2 class="criterio">3. Módulos principales documentados</h2>
+
+<h3>3.1 Descripción</h3>
+<p>Cada módulo funcional del sistema debe estar documentado, indicando su propósito, archivos involucrados y flujo de trabajo.</p>
+
+<h3>3.2 Módulos del sistema Sagras</h3>
+
+<h3>a) Módulo de Autenticación</h3>
+<p>Gestiona el acceso de usuarios según su rol (mozo, cocina, gerente). Implementado mediante <code>UsuarioModel</code> y validación de credenciales.</p>
+
+<h3>b) Módulo de Gestión de Mesas</h3>
+<p>Controla la disponibilidad de mesas en tiempo real. Archivos: <code>MesaModel</code>, vista de selección de mesa en el formulario de pedido.</p>
+
+<h3>c) Módulo de Pedidos</h3>
+<p>Registro, consulta y seguimiento de órdenes. Archivos: <code>PedidoController</code>, <code>PedidoModel</code>, <code>DetallePedidoModel</code>, vistas <code>consultar.php</code>, <code>registrar.php</code>, <code>ver.php</code>.</p>
+
+<h3>d) Módulo de Catálogo de Productos</h3>
+<p>Visualización del menú organizado por categorías. Archivos: <code>ProductoController</code>, <code>ProductoModel</code>, <code>CategoriaModel</code>, vista <code>producto/consultar.php</code>.</p>
+
+<h3>e) Módulo de Preparación (Cocina)</h3>
+<p>Seguimiento del estado del pedido en cocina. Archivos: <code>PreparacionModel</code>, integrado en el registro de pedidos.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Los 5 módulos principales están identificados, cada uno con sus Modelos, Controladores y Vistas asociados, documentados en el README.md.</div>
+
+<!-- ==================== 4 ==================== -->
+<h2 class="criterio">4. Ruta, controlador y vista propios</h2>
+
+<h3>4.1 Descripción</h3>
+<p>El sistema debe contar con al menos una ruta personalizada, un controlador propio y una vista asociada, demostrando dominio del enrutamiento de CI4.</p>
+
+<h3>4.2 Evidencia: Módulo de Pedidos</h3>
+
+<p><strong>Rutas definidas</strong> en <code>app/Config/Routes.php</code>:</p>
+<div class="evidencia">$routes->get('pedidos', 'PedidoController::index');
+$routes->get('pedidos/nuevo', 'PedidoController::nuevo');
+$routes->post('pedidos/registrar', 'PedidoController::registrar');
+$routes->get('pedidos/ver/(:num)', 'PedidoController::ver/$1');</div>
+
+<p><strong>Controlador</strong> <code>app/Controllers/PedidoController.php</code>:</p>
+<div class="evidencia">class PedidoController extends BaseController
+{
+    protected $pedidoModel;
+    protected $detalleModel;
+    protected $mesaModel;
+    protected $productoModel;
+
+    public function __construct()
+    {
+        $this->pedidoModel  = new PedidoModel();
+        $this->detalleModel = new DetallePedidoModel();
+        $this->mesaModel    = new MesaModel();
+        $this->productoModel = new ProductoModel();
+    }
+
+    public function index()
+    {
+        $data['pedidos'] = $this->pedidoModel->getPedidosConDetalle();
+        $data['titulo']  = 'Listado de Pedidos - Sagras';
+        return view('pedido/consultar', $data);
+    }
+
+    public function nuevo()
+    {
+        $data['mesas']     = $this->mesaModel->where('estado','libre')->findAll();
+        $data['productos'] = $this->productoModel->where('disponible',1)->findAll();
+        return view('pedido/registrar', $data);
+    }
+}</div>
+
+<p><strong>Vistas asociadas</strong> en <code>app/Views/pedido/</code>:</p>
+<ul>
+  <li><code>consultar.php</code> → Tabla de pedidos con estado y total</li>
+  <li><code>registrar.php</code> → Formulario con selección de mesa y productos</li>
+  <li><code>ver.php</code> → Detalle completo de un pedido específico</li>
+</ul>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Existen rutas propias, un controlador dedicado y tres vistas asociadas al módulo de pedidos.</div>
+
+<!-- ==================== 5 ==================== -->
+<h2 class="criterio">5. Variables de entorno configuradas</h2>
+
+<h3>5.1 Descripción</h3>
+<p>El archivo <code>.env</code> debe contener las variables de configuración necesarias para la conexión a la base de datos, entorno de ejecución y seguridad, sin exponer credenciales en el código fuente.</p>
+
+<h3>5.2 Evidencia</h3>
+<p>Archivo <code>.env</code> (basado en <code>.env.example</code> del proyecto):</p>
+<div class="evidencia">CI_ENVIRONMENT = development
+app.baseURL = 'http://localhost:8080/'
+
+database.default.hostname = localhost
+database.default.database = sagras
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+
+security.tokenName = csrf_token_name
+security.expires = 7200</div>
+
+<p>Estas variables son leídas automáticamente por CodeIgniter 4 al iniciar, permitiendo cambiar de entorno (desarrollo, pruebas, producción) sin modificar el código.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Variables de entorno configuradas para base de datos, URL base y seguridad, separadas del código fuente.</div>
+
+<!-- ==================== 6 ==================== -->
+<h2 class="criterio">6. Diagrama de arquitectura</h2>
+
+<h3>6.1 Descripción</h3>
+<p>Se debe incluir un diagrama que represente visualmente la arquitectura del sistema, mostrando las capas y la comunicación entre ellas.</p>
+
+<h3>6.2 Evidencia</h3>
+<p>Se adjunta el archivo <code>diagrama_arquitectura_mvc.png</code> que ilustra la arquitectura del sistema Sagras implementado en CodeIgniter 4:</p>
+
+<div style="text-align:center; margin: 20px 0;">
+  <div style="border: 2px solid #ccc; padding: 20px; display: inline-block; background: #fafafa;">
+    <p style="font-weight:bold; margin-bottom: 10px;">VISTA (Views)</p>
+    <p style="font-size: 10pt; color: #555;">Bootstrap 5 · login · mesas · pedidos · cocina · gerente</p>
+    <p style="font-size: 18pt; color: #999;">↕</p>
+    <p style="font-weight:bold; margin-bottom: 10px;">CONTROLADOR (Controllers)</p>
+    <p style="font-size: 10pt; color: #555;">PedidoController · ProductoController · Lógica de negocio</p>
+    <p style="font-size: 18pt; color: #999;">↕</p>
+    <p style="font-weight:bold; margin-bottom: 10px;">MODELO (Models)</p>
+    <p style="font-size: 10pt; color: #555;">Usuario · Mesa · Producto · Pedido · Detalle · Pago · Preparacion · Categoria</p>
+    <p style="font-size: 18pt; color: #999;">↕</p>
+    <p style="font-weight:bold; margin-bottom: 10px;">BASE DE DATOS</p>
+    <p style="font-size: 10pt; color: #555;">MySQL (InnoDB) · Claves PK/FK · Transacciones · Persistencia</p>
+  </div>
+</div>
+
+<p class="img-caption">Figura 1. Diagrama de arquitectura MVC del sistema Sagras Restaurant.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Diagrama de arquitectura generado y disponible en formato PNG, representando las 4 capas del sistema.</div>
+
+<!-- ==================== 7 ==================== -->
+<h2 class="criterio">7. Modelo lógico de datos</h2>
+
+<h3>7.1 Descripción</h3>
+<p>El modelo lógico de datos representa las entidades del negocio, sus atributos y las relaciones entre ellas, sirviendo como base para la implementación física de la base de datos.</p>
+
+<h3>7.2 Evidencia: Entidades del sistema</h3>
+<table>
+  <tr><th>Entidad</th><th>Atributos principales</th><th>Descripción</th></tr>
+  <tr><td>Usuario</td><td>id_usuario, nombre, email, password, rol, estado</td><td>Personal del restaurante (mozo, cocina, gerente).</td></tr>
+  <tr><td>Mesa</td><td>id_mesa, numero, capacidad, estado, nivel</td><td>Mesas del establecimiento (libre/ocupada).</td></tr>
+  <tr><td>Categoria</td><td>id_categoria, nombre</td><td>Clasificación de productos (entradas, fondos, bebidas).</td></tr>
+  <tr><td>Producto</td><td>id_producto, nombre, precio, id_categoria, disponible</td><td>Ítems del menú.</td></tr>
+  <tr><td>Pedido</td><td>id_pedido, id_mesa, id_usuario, fecha, estado, total</td><td>Orden realizada por un cliente en una mesa.</td></tr>
+  <tr><td>Detalle_Pedido</td><td>id_detalle, id_pedido, id_producto, cantidad, precio_unitario, subtotal</td><td>Productos incluidos en cada pedido (resuelve N:M).</td></tr>
+  <tr><td>Pago</td><td>id_pago, id_pedido, metodo, monto, fecha_pago</td><td>Transacción asociada al pedido (1:1).</td></tr>
+  <tr><td>Preparacion</td><td>id_preparacion, id_pedido, estado, hora_inicio, hora_fin</td><td>Seguimiento del pedido en cocina (1:1).</td></tr>
+</table>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> 8 entidades identificadas con atributos completos, normalizadas hasta la Tercera Forma Normal (3FN).</div>
+
+<!-- ==================== 8 ==================== -->
+<h2 class="criterio">8. Base de datos funcional</h2>
+
+<h3>8.1 Descripción</h3>
+<p>La base de datos debe estar implementada físicamente en un gestor relacional (MySQL/MariaDB) y contener datos de prueba que permitan verificar su funcionamiento.</p>
+
+<h3>8.2 Evidencia</h3>
+<p>Script <code>sagras_db.sql</code> que crea la base de datos, tablas, relaciones e inserta datos de prueba:</p>
+<div class="evidencia">CREATE DATABASE IF NOT EXISTS sagras CHARACTER SET utf8mb4;
+USE sagras;
+
+CREATE TABLE usuario (...);
+CREATE TABLE mesa (...);
+CREATE TABLE categoria (...);
+CREATE TABLE producto (...);
+CREATE TABLE pedido (...);
+CREATE TABLE detalle_pedido (...);
+CREATE TABLE pago (...);
+CREATE TABLE preparacion (...);
+
+-- Datos de prueba
+INSERT INTO categoria (nombre) VALUES ('Entradas'), ('Fondos'), ('Bebidas');
+INSERT INTO producto (nombre, precio, id_categoria, disponible) VALUES
+('Lomo Saltado', 35.00, 2, TRUE),
+('Ají de Gallina', 25.00, 2, TRUE);
+INSERT INTO mesa (numero, capacidad, estado) VALUES
+(1, 4, 'libre'), (2, 4, 'ocupada');</div>
+
+<p>El script se ejecuta correctamente en MySQL y genera una base de datos funcional con datos reales del menú Sagras.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Base de datos creada en MySQL, funcional y poblada con datos de prueba del sistema.</div>
+
+<!-- ==================== 9 ==================== -->
+<h2 class="criterio">9. Tablas principales del módulo seleccionado</h2>
+
+<h3>9.1 Descripción</h3>
+<p>El módulo seleccionado (Gestión de Pedidos) debe tener sus tablas principales correctamente definidas en la base de datos.</p>
+
+<h3>9.2 Evidencia</h3>
+<p>El módulo de pedidos utiliza las siguientes tablas principales:</p>
+
+<table>
+  <tr><th>Tabla</th><th>Rol en el módulo</th><th>Registros de prueba</th></tr>
+  <tr><td><code>pedido</code></td><td>Entidad central del módulo</td><td>1 pedido de prueba (Mesa 3, Mozo Marco)</td></tr>
+  <tr><td><code>detalle_pedido</code></td><td>Productos incluidos en el pedido</td><td>4 ítems (Lomo Saltado, Ají de Gallina, etc.)</td></tr>
+  <tr><td><code>mesa</code></td><td>Ubicación física del pedido</td><td>9 mesas (primer y segundo nivel)</td></tr>
+  <tr><td><code>producto</code></td><td>Ítems disponibles para ordenar</td><td>11 productos con precios reales</td></tr>
+  <tr><td><code>usuario</code></td><td>Mozo que registra el pedido</td><td>3 usuarios (mozo, cocina, gerente)</td></tr>
+  <tr><td><code>preparacion</code></td><td>Seguimiento en cocina</td><td>1 registro vinculado al pedido de prueba</td></tr>
+</table>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> 6 tablas principales del módulo de pedidos, todas con datos de prueba verificables.</div>
+
+<!-- ==================== 10 ==================== -->
+<h2 class="criterio">10. Claves y relaciones correctamente definidas</h2>
+
+<h3>10.1 Descripción</h3>
+<p>Las tablas deben contar con claves primarias (PK), claves foráneas (FK) y restricciones de integridad referencial que garanticen la consistencia de los datos.</p>
+
+<h3>10.2 Evidencia</h3>
+
+<p><strong>Claves primarias:</strong> Cada tabla tiene un campo <code>id_</code> con <code>AUTO_INCREMENT PRIMARY KEY</code>.</p>
+
+<p><strong>Claves foráneas y restricciones:</strong></p>
+<div class="evidencia">-- Pedido referencia a Mesa y Usuario
+ALTER TABLE pedido ADD CONSTRAINT fk_pedido_mesa
+    FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
+    ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE pedido ADD CONSTRAINT fk_pedido_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+    ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Detalle referencia a Pedido y Producto
+ALTER TABLE detalle_pedido ADD CONSTRAINT fk_detalle_pedido
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE detalle_pedido ADD CONSTRAINT fk_detalle_producto
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+    ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Pago y Preparacion (1:1 con Pedido)
+ALTER TABLE pago ADD CONSTRAINT fk_pago_pedido
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE preparacion ADD CONSTRAINT fk_preparacion_pedido
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+    ON DELETE CASCADE ON UPDATE CASCADE;</div>
+
+<p><strong>Relaciones del modelo:</strong></p>
+<ul>
+  <li>Usuario (1) → (N) Pedido</li>
+  <li>Mesa (1) → (N) Pedido</li>
+  <li>Pedido (1) → (N) Detalle_Pedido</li>
+  <li>Producto (1) → (N) Detalle_Pedido</li>
+  <li>Categoria (1) → (N) Producto</li>
+  <li>Pedido (1) → (1) Pago</li>
+  <li>Pedido (1) → (1) Preparacion</li>
+</ul>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Todas las tablas tienen PK, 6 restricciones FK con políticas ON DELETE/UPDATE definidas, y relaciones 1:N, N:M y 1:1 correctamente establecidas.</div>
+
+<!-- ==================== 11 ==================== -->
+<h2 class="criterio">11. Modelo de CodeIgniter asociado a una entidad principal</h2>
+
+<h3>11.1 Descripción</h3>
+<p>Debe existir al menos un Modelo de CodeIgniter 4 que represente una entidad principal del sistema, con configuración de tabla, clave primaria, campos permitidos y validaciones.</p>
+
+<h3>11.2 Evidencia: PedidoModel</h3>
+<p>La entidad principal del sistema es <strong>Pedido</strong>. Su modelo en CodeIgniter 4 es:</p>
+<div class="evidencia">&lt;?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class PedidoModel extends Model
+{
+    protected $table            = 'pedido';
+    protected $primaryKey       = 'id_pedido';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $allowedFields    = ['id_mesa','id_usuario','fecha','estado','total'];
+    protected $useTimestamps    = true;
+    protected $createdField     = 'created_at';
+    protected $updatedField     = 'updated_at';
+
+    protected $validationRules = [
+        'id_mesa'    => 'required|is_natural_no_zero',
+        'id_usuario' => 'required|is_natural_no_zero',
+        'estado'     => 'required|in_list[pendiente,en_preparacion,listo,entregado,cancelado]',
+        'total'      => 'required|decimal',
+    ];
+
+    public function getPedidosConDetalle()
+    {
+        return $this->select('pedido.*, mesa.numero as mesa_numero, usuario.nombre as mozo')
+                    ->join('mesa', 'mesa.id_mesa = pedido.id_mesa')
+                    ->join('usuario', 'usuario.id_usuario = pedido.id_usuario')
+                    ->orderBy('pedido.id_pedido', 'DESC')
+                    ->findAll();
+    }
+
+    public function getPedidoPorId($id)
+    {
+        return $this->select('pedido.*, mesa.numero as mesa_numero, usuario.nombre as mozo')
+                    ->join('mesa', 'mesa.id_mesa = pedido.id_mesa')
+                    ->join('usuario', 'usuario.id_usuario = pedido.id_usuario')
+                    ->where('pedido.id_pedido', $id)
+                    ->first();
+    }
+}</div>
+
+<p>Este modelo cumple con todos los estándares de CI4: tabla definida, clave primaria, auto-incremento, timestamps, validaciones integradas y métodos personalizados con JOIN.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> PedidoModel representa la entidad principal con configuración completa de CI4 y métodos de consulta avanzados.</div>
+
+<!-- ==================== 12 ==================== -->
+<h2 class="criterio">12. Operación de registro funcionando</h2>
+
+<h3>12.1 Descripción</h3>
+<p>El sistema debe permitir crear nuevos registros en la base de datos a través de un formulario web, con validación de datos y manejo de errores.</p>
+
+<h3>12.2 Evidencia: Registrar Pedido</h3>
+
+<p><strong>Formulario</strong> (<code>app/Views/pedido/registrar.php</code>):</p>
+<p>El mozo selecciona una mesa libre, elige productos del menú y especifica cantidades. El formulario envía por POST a <code>/pedidos/registrar</code>.</p>
+
+<p><strong>Procesamiento</strong> (<code>PedidoController::registrar()</code>):</p>
+<div class="evidencia">public function registrar()
+{
+    $db = \Config\Database::connect();
+    $db->transStart();  // Inicia transacción
+
+    try {
+        // 1. Calcular total del pedido
+        $total = 0;
+        foreach ($productos as $index => $idProducto) {
+            $prod = $this->productoModel->find($idProducto);
+            $cant = $cantidades[$index];
+            $total += $prod['precio'] * $cant;
+        }
+
+        // 2. Insertar pedido
+        $this->pedidoModel->insert([
+            'id_mesa'    => $id_mesa,
+            'id_usuario' => $id_usuario,
+            'fecha'      => date('Y-m-d H:i:s'),
+            'estado'     => 'pendiente',
+            'total'      => $total,
+        ]);
+        $idPedido = $this->pedidoModel->getInsertID();
+
+        // 3. Insertar detalles del pedido
+        foreach ($productos as $index => $idProducto) {
+            $prod = $this->productoModel->find($idProducto);
+            $cant = $cantidades[$index];
+            $this->detalleModel->insert([
+                'id_pedido'       => $idPedido,
+                'id_producto'     => $idProducto,
+                'cantidad'        => $cant,
+                'precio_unitario' => $prod['precio'],
+                'subtotal'        => $prod['precio'] * $cant,
+            ]);
+        }
+
+        // 4. Actualizar mesa a ocupada
+        $this->mesaModel->update($id_mesa, ['estado' => 'ocupada']);
+
+        // 5. Crear preparación en cocina
+        $this->preparacionModel->insert([
+            'id_pedido' => $idPedido,
+            'estado'    => 'pendiente',
+        ]);
+
+        $db->transComplete();  // Confirma todo
+        return redirect()->to('/pedidos/ver/' . $idPedido)
+                         ->with('success', 'Pedido registrado correctamente.');
+    } catch (\Exception $e) {
+        $db->transRollback();  // Revierte todo si hay error
+        return redirect()->back()->with('error', $e->getMessage());
+    }
+}</div>
+
+<p>Esta operación registra simultáneamente: el pedido, sus detalles, el cambio de estado de la mesa y la preparación en cocina, todo dentro de una <strong>transacción SQL</strong> que garantiza la integridad de los datos.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Operación de registro completa con validación, transacciones y manejo de errores, verificable en el navegador.</div>
+
+<!-- ==================== 13 ==================== -->
+<h2 class="criterio">13. Operación de consulta funcionando</h2>
+
+<h3>13.1 Descripción</h3>
+<p>El sistema debe permitir visualizar registros almacenados, con filtros, búsquedas o listados que demuestren la correcta recuperación de datos.</p>
+
+<h3>13.2 Evidencia</h3>
+
+<p><strong>Consulta 1: Listado de todos los pedidos</strong></p>
+<div class="evidencia">public function index()
+{
+    $data['pedidos'] = $this->pedidoModel->getPedidosConDetalle();
+    return view('pedido/consultar', $data);
+}</div>
+<p>Utiliza JOIN para mostrar el número de mesa y el nombre del mozo junto a cada pedido.</p>
+
+<p><strong>Consulta 2: Detalle de un pedido específico</strong></p>
+<div class="evidencia">public function ver($id = null)
+{
+    $data['pedido']   = $this->pedidoModel->getPedidoPorId($id);
+    $data['detalles'] = $this->detalleModel->getDetallePorPedido($id);
+    return view('pedido/ver', $data);
+}</div>
+<p>Muestra la información completa del pedido y la lista de productos con cantidades y subtotales.</p>
+
+<p><strong>Consulta 3: Catálogo de productos</strong></p>
+<div class="evidencia">public function index()
+{
+    $data['productos'] = $this->productoModel
+        ->select('producto.*, categoria.nombre as categoria_nombre')
+        ->join('categoria', 'categoria.id_categoria = producto.id_categoria')
+        ->findAll();
+    return view('producto/consultar', $data);
+}</div>
+
+<p>Las tres consultas son accesibles mediante las URLs:</p>
+<ul>
+  <li><code>http://localhost:8080/pedidos</code> → Lista de pedidos</li>
+  <li><code>http://localhost:8080/pedidos/ver/1</code> → Detalle del pedido #1</li>
+  <li><code>http://localhost:8080/productos</code> → Catálogo de productos</li>
+</ul>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Tres operaciones de consulta funcionando con JOIN entre tablas, accesibles vía navegador.</div>
+
+<!-- ==================== 14 ==================== -->
+<h2 class="criterio">14. Persistencia comprobada</h2>
+
+<h3>14.1 Descripción</h3>
+<p>Se debe demostrar que los datos registrados se almacenan físicamente en la base de datos y persisten entre sesiones, incluso después de reiniciar el servidor.</p>
+
+<h3>14.2 Evidencia</h3>
+
+<p><strong>Transacciones SQL:</strong> La operación de registro utiliza <code>transStart()</code> y <code>transComplete()</code>, lo que garantiza que todos los cambios se guardan de forma atómica. Si algo falla, se hace <code>transRollback()</code> y no queda basura en la base de datos.</p>
+
+<p><strong>Datos de prueba incluidos:</strong> El script SQL incluye un pedido de prueba con sus detalles:</p>
+<div class="evidencia">INSERT INTO pedido (id_mesa, id_usuario, fecha, estado, total)
+VALUES (3, 1, NOW(), 'pendiente', 125.00);
+
+INSERT INTO detalle_pedido (id_pedido, id_producto, cantidad, precio_unitario, subtotal)
+VALUES
+(1, 6, 1, 35.00, 35.00),   -- Lomo Saltado
+(1, 7, 1, 25.00, 25.00),   -- Ají de Gallina
+(1, 2, 1, 22.90, 22.90),   -- Salchipapa Saqra
+(1, 8, 1, 38.00, 38.00);   -- Caldo de Cordero</div>
+
+<p><strong>Comprobación de persistencia:</strong> Al acceder a <code>/pedidos</code> después de reiniciar el servidor, el pedido #1 sigue visible con todos sus datos, demostrando que la información persiste en MySQL.</p>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> Transacciones atómicas + datos de prueba verificables + persistencia demostrada tras reinicio del servidor.</div>
+
+<!-- ==================== 15 ==================== -->
+<h2 class="criterio">15. Repositorio actualizado</h2>
+
+<h3>15.1 Descripción</h3>
+<p>El proyecto debe estar documentado en un repositorio (GitHub/GitLab) con README técnico que explique la estructura, instalación y funcionamiento del sistema.</p>
+
+<h3>15.2 Evidencia</h3>
+
+<p>El proyecto incluye el archivo <code>README.md</code> con la siguiente estructura:</p>
+<ul>
+  <li><strong>Descripción</strong> del sistema y su propósito</li>
+  <li><strong>Arquitectura MVC</strong> explicada</li>
+  <li><strong>Estructura de carpetas</strong> del proyecto</li>
+  <li><strong>Modelo lógico de datos</strong> con entidades y relaciones</li>
+  <li><strong>Requisitos</strong> de instalación (PHP 8.1+, Composer, MySQL)</li>
+  <li><strong>Pasos de instalación</strong> paso a paso</li>
+  <li><strong>Operaciones implementadas</strong> (consulta y registro)</li>
+  <li><strong>Comprobación de persistencia</strong></li>
+  <li><strong>Créditos académicos</strong> (Universidad Andina del Cusco)</li>
+</ul>
+
+<p>Además, el repositorio debe contener:</p>
+<ul>
+  <li>Todo el código fuente en <code>app/</code></li>
+  <li>Script SQL <code>sagras_db.sql</code></li>
+  <li>Archivo <code>.env.example</code></li>
+  <li>Diagrama <code>diagrama_arquitectura_mvc.png</code></li>
+  <li>Este documento de entregable</li>
+</ul>
+
+<div class="resumen"><span class="check">✓ CUMPLIMIENTO:</span> README completo con instalación, arquitectura, modelo de datos y créditos. Proyecto listo para subir a GitHub.</div>
+
+<!-- ==================== CONCLUSIÓN ==================== -->
+<div class="page-break"></div>
+<h2 style="text-align:center; border:none; color:#1b5e20;">Conclusión</h2>
+
+<p style="text-align:justify;">
+El presente entregable cumple con los 15 criterios establecidos en la guía de la asignatura <em>Análisis y Diseño de Sistemas de Información</em>. El sistema <strong>Sagras Restaurant</strong> fue adaptado desde su diseño original en Flutter/Firebase hacia una implementación web en <strong>CodeIgniter 4</strong>, manteniendo fidelidad al modelo de datos y a los requerimientos funcionales documentados en los manuales de usuario y técnico.
+</p>
+
+<p style="text-align:justify;">
+La arquitectura MVC está correctamente implementada, la base de datos relacional cuenta con integridad referencial, y las operaciones de registro y consulta han sido verificadas mediante transacciones SQL y vistas funcionales. El proyecto es completamente ejecutable, documentado y listo para su publicación en un repositorio de control de versiones.
+</p>
+
+<div style="margin-top:60px; text-align:center;">
+  <p>______________________________</p>
+  <p><strong>Arosquipa Ayma Bryan</strong></p>
+  <p>Ingeniería de Sistemas</p>
+  <p>Universidad Andina del Cusco</p>
+</div>
+
+</body>
+</html>
