@@ -16,16 +16,14 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark navbar-sagras mb-4">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/pedidos">Sagras Restaurant</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/pedidos/nuevo">Nuevo Pedido</a></li>
-        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
-      </ul>
-    </div>
+<a class="navbar-brand fw-bold" href="<?= base_url('index.php/pedidos') ?>">Sagras Restaurant</a>
+<div class="collapse navbar-collapse">
+    <ul class="navbar-link navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="<?= base_url('index.php/pedidos') ?>">Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= base_url('index.php/pedidos/nuevo') ?>">Nuevo Pedido</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= base_url('index.php/productos') ?>">Productos</a></li>
+    </ul>
+</div>
   </div>
 </nav>
 <div class="container">
