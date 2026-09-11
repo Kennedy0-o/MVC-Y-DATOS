@@ -123,6 +123,7 @@ class PedidoService
         if (count($datos['productos']) > 20) {
             throw new \InvalidArgumentException('No puede seleccionar más de 20 productos por pedido.');
         }
+        
     }
 
     // ================================================================
@@ -152,7 +153,7 @@ class PedidoService
             foreach ($productos as $index => $idProducto) {
                 $prod = $this->productoModel->find($idProducto);
                 $cant = isset($cantidades[$index]) ? (int)$cantidades[$index] : 1;
-                if ($cant < 1 || $cant > 50) {
+                if ($cant < 1 || $cant > 20) {
                     throw new \InvalidArgumentException("Cantidad inválida para '{$prod['nombre']}'.");
                 }
                 $total += $prod['precio'] * $cant;

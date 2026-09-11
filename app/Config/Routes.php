@@ -38,3 +38,5 @@ $routes->get('productos', 'ProductoController::index');
 $routes->get('health', function() {
     return \Config\Services::response()->setJSON(['status' => 'ok', 'system' => 'Sagras CI4 - Guia 4']);
 });
+$routes->get('productos/nuevo', 'ProductoController::nuevo');
+$routes->post('productos/registrar', 'ProductoController::registrar');

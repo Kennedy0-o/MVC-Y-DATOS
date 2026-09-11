@@ -1,7 +1,10 @@
 <?= $this->extend('layout/main') ?>
 <?= $this->section('content') ?>
 
-<h2 class="mb-4">Catalogo de Productos</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Catalogo de Productos</h2>
+    <a href="<?= base_url('productos/nuevo') ?>" class="btn btn-sagras">+ Agregar Producto</a>
+</div>
 
 <div class="row g-3">
     <?php foreach ($productos as $p): ?>
