@@ -22,18 +22,36 @@ class PedidoService
     protected $preparacionModel;
     protected $pagoModel;
 
-    public function __construct()
+   public function __construct(
+    ?PedidoModel $pedidoModel = null,
+    ?DetallePedidoModel $detalleModel = null,
+    ?MesaModel $mesaModel = null,
+    ?ProductoModel $productoModel = null,
+    ?PreparacionModel $preparacionModel = null,
+    ?PagoModel $pagoModel = null
+) {
+    $this->pedidoModel      = $pedidoModel      ?? new PedidoModel();
+    $this->detalleModel     = $detalleModel     ?? new DetallePedidoModel();
+    $this->mesaModel        = $mesaModel        ?? new MesaModel();
+    $this->productoModel    = $productoModel    ?? new ProductoModel();
+    $this->preparacionModel = $preparacionModel ?? new PreparacionModel();
+    $this->pagoModel        = $pagoModel        ?? new PagoModel();
+}
+
+    // ================================================================
+    // REGLAS DE NEGOCIO PURAS (Sin acceso a BD)
+    // ================================================================
+
+    /**
+     * RN-03 (versión pura): un pedido entregado o cancelado no puede cambiar de estado.
+     */
+    public function puedeCambiarEstado(string $estadoActual): bool
     {
-        $this->pedidoModel      = new PedidoModel();
-        $this->detalleModel     = new DetallePedidoModel();
-        $this->mesaModel        = new MesaModel();
-        $this->productoModel    = new ProductoModel();
-        $this->preparacionModel = new PreparacionModel();
-        $this->pagoModel        = new PagoModel();
+        return !in_array($estadoActual, ['entregado', 'cancelado'], true);
     }
 
     // ================================================================
-    // REGLAS DE NEGOCIO
+    // REGLAS DE NEGOCIO CON BD
     // ================================================================
 
     /**
@@ -82,7 +100,7 @@ class PedidoService
         if (!$pedido) {
             throw new \InvalidArgumentException('El pedido no existe.');
         }
-        if (in_array($pedido['estado'], ['entregado', 'cancelado'])) {
+        if (!$this->puedeCambiarEstado($pedido['estado'])) {
             throw new \RuntimeException('No se puede modificar un pedido que ya está ' . $pedido['estado'] . '.');
         }
     }
@@ -123,7 +141,6 @@ class PedidoService
         if (count($datos['productos']) > 20) {
             throw new \InvalidArgumentException('No puede seleccionar más de 20 productos por pedido.');
         }
-        
     }
 
     // ================================================================
@@ -202,7 +219,7 @@ class PedidoService
     }
 
     // ================================================================
-    // CRUD - READ (ya existía, se mantiene)
+    // CRUD - READ
     // ================================================================
     public function listarPedidos(): array
     {
@@ -248,6 +265,9 @@ class PedidoService
             foreach ($productos as $index => $idProducto) {
                 $prod = $this->productoModel->find($idProducto);
                 $cant = isset($cantidades[$index]) ? (int)$cantidades[$index] : 1;
+                if ($cant < 1 || $cant > 20) {
+                    throw new \InvalidArgumentException("Cantidad inválida para '{$prod['nombre']}'.");
+                }
                 $total += $prod['precio'] * $cant;
             }
 
@@ -283,6 +303,29 @@ class PedidoService
             $db->transRollback();
             throw $e;
         }
+    }
+
+    // ================================================================
+    // UPDATE de ESTADO (flujo de cocina: pendiente -> en_preparacion -> listo -> entregado)
+    // ================================================================
+    public function cambiarEstado(int $idPedido, string $nuevoEstado): void
+    {
+        $estadosValidos = ['pendiente', 'en_preparacion', 'listo', 'entregado'];
+
+        if (!in_array($nuevoEstado, $estadosValidos, true)) {
+            throw new \InvalidArgumentException('Estado inválido.');
+        }
+
+        $pedido = $this->pedidoModel->find($idPedido);
+        if (!$pedido) {
+            throw new \InvalidArgumentException('El pedido no existe.');
+        }
+
+        if (!$this->puedeCambiarEstado($pedido['estado'])) {
+            throw new \RuntimeException('No se puede cambiar el estado de un pedido que ya está ' . $pedido['estado'] . '.');
+        }
+
+        $this->pedidoModel->update($idPedido, ['estado' => $nuevoEstado]);
     }
 
     // ================================================================
